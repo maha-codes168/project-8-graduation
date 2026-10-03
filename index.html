@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Congratulations, Graduate! 🎓</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Background Particle Canvas -->
+    <canvas id="particleCanvas"></canvas>
+
+    <!-- Progress Bar -->
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <!-- Loading Screen -->
+    <div class="loader-overlay" id="loader">
+        <div class="loader-content">
+            <div class="cap-loader">🎓</div>
+            <h3 class="loader-title">Preparing a little graduation surprise...</h3>
+            <div class="loader-bar-bg">
+                <div class="loader-bar-fill" id="loaderFill"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Header -->
+    <header class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#hero" class="nav-logo">GRADUATE 🎓</a>
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle Navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav class="nav-menu" id="navMenu">
+                <a href="#hero" class="nav-link active">Home</a>
+                <a href="#you-did-it" class="nav-link">You Did It</a>
+                <a href="#timeline" class="nav-link">Journey</a>
+                <a href="#proud-of" class="nav-link">Proud Of You</a>
+                <a href="#more-than" class="nav-link">Best Friend</a>
+                <a href="#friendship-words" class="nav-link">Memories</a>
+                <a href="#next-chapter" class="nav-link">Future</a>
+                <a href="#letter" class="nav-link">Letter</a>
+            </nav>
+            <div class="nav-actions">
+                <button class="music-btn" id="musicBtn" aria-label="Toggle Background Music">
+                    <span class="music-icon">🎵</span> <span id="musicText">Music: OFF</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hidden Audio Player -->
+    <audio id="bgMusic" loop preload="auto">
+        <source src="assets/music/celebration.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Main Content Container -->
+    <main class="main-content">
+
+        <!-- PAGE 1 — HERO / WELCOME -->
+        <section id="hero" class="section hero-section">
+            <div class="hero-wrapper">
+                <div class="cap-float-hero">🎓</div>
+                <div class="hero-badge">A Special Graduation Surprise</div>
+                <h1 class="hero-title">Congratulations, <br><span class="highlight-text editable-var" data-var="FRIEND_NAME">[FRIEND NAME]</span>!</h1>
+                <p class="hero-subtitle">You did it. Your hard work, patience and dedication finally brought you here.</p>
+                
+                <div class="degree-card-hero">
+                    <div class="hero-degree editable-var" data-var="DEGREE">[DEGREE NAME]</div>
+                    <div class="hero-date editable-var" data-var="GRADUATION_DATE">[GRADUATION DATE]</div>
+                </div>
+
+                <a href="#you-did-it" class="btn btn-primary btn-glow btn-hero">
+                    Open Your Surprise →
+                </a>
+            </div>
+        </section>
+
+        <!-- PAGE 2 — YOU DID IT! -->
+        <section id="you-did-it" class="section">
+            <div class="section-container">
+                <div class="center-header animate-on-scroll">
+                    <span class="sub-tag">Celebration</span>
+                    <h2 class="section-title">YOU GRADUATED! 🎉</h2>
+                </div>
+
+                <div class="grid-2 gap-2 mt-2">
+                    <div class="glass-card celebration-card animate-on-scroll">
+                        <div class="cap-pulse">🎓</div>
+                        <h3 class="card-title">A Moment To Celebrate</h3>
+                        <p class="card-text editable-var" data-var="YOU_DID_IT_MESSAGE">
+                            After all the hard work, stressful days, difficult moments and countless efforts, you finally made it. Today is a reminder that every step was worth it. I am genuinely so proud of you.
+                        </p>
+                        <button class="btn btn-secondary mt-1" id="triggerConfettiBtn">Re-trigger Confetti 🎉</button>
+                    </div>
+
+                    <div class="glass-card achievement-card animate-on-scroll">
+                        <div class="achievement-header">
+                            <span class="star-icon">✨</span>
+                            <h4>Official Achievement</h4>
+                        </div>
+                        <div class="achievement-details">
+                            <div class="detail-item">
+                                <label>Graduate</label>
+                                <span class="editable-var" data-var="FRIEND_NAME">[FRIEND NAME]</span>
+                            </div>
+                            <div class="detail-item">
+                                <label>Degree Program</label>
+                                <span class="editable-var" data-var="DEGREE">[DEGREE NAME]</span>
+                            </div>
+                            <div class="detail-item">
+                                <label>University / College</label>
+                                <span class="editable-var" data-var="UNIVERSITY">[UNIVERSITY]</span>
+                            </div>
+                            <div class="detail-item">
+                                <label>Graduation Date</label>
+                                <span class="editable-var" data-var="GRADUATION_DATE">[GRADUATION DATE]</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE 3 — LOOK HOW FAR YOU'VE COME -->
+        <section id="timeline" class="section bg-soft">
+            <div class="section-container">
+                <div class="center-header animate-on-scroll">
+                    <span class="sub-tag">The Journey</span>
+                    <h2 class="section-title">Look How Far You've Come</h2>
+                </div>
+
+                <div class="vertical-timeline">
+                    <!-- Stage 1 -->
+                    <div class="timeline-item animate-on-scroll">
+                        <div class="timeline-marker">1</div>
+                        <div class="timeline-content glass-card">
+                            <span class="timeline-step">Step 01</span>
+                            <h3>The Beginning</h3>
+                            <p>Every big achievement starts with one small step.</p>
+                        </div>
+                    </div>
+
+                    <!-- Stage 2 -->
+                    <div class="timeline-item animate-on-scroll">
+                        <div class="timeline-marker">2</div>
+                        <div class="timeline-content glass-card">
+                            <span class="timeline-step">Step 02</span>
+                            <h3>The Hard Days</h3>
+                            <p>There were difficult days, stressful moments and times when giving up probably felt easier.</p>
+                        </div>
+                    </div>
+
+                    <!-- Stage 3 -->
+                    <div class="timeline-item animate-on-scroll">
+                        <div class="timeline-marker">3</div>
+                        <div class="timeline-content glass-card">
+                            <span class="timeline-step">Step 03</span>
+                            <h3>You Kept Going</h3>
+                            <p>But you continued, learned, worked hard and kept moving forward.</p>
+                        </div>
+                    </div>
+
+                    <!-- Stage 4 -->
+                    <div class="timeline-item animate-on-scroll">
+                        <div class="timeline-marker">4</div>
+                        <div class="timeline-content glass-card">
+                            <span class="timeline-step">Step 04</span>
+                            <h3>The Final Chapter</h3>
+                            <p>The last exams, final assignments and all those little efforts finally came together.</p>
+                        </div>
+                    </div>
+
+                    <!-- Stage 5 -->
+                    <div class="timeline-item animate-on-scroll">
+                        <div class="timeline-marker">5</div>
+                        <div class="timeline-content glass-card highlight-border">
+                            <span class="timeline-step">Step 05</span>
+                            <h3>Graduation Day</h3>
+                            <p>And now... you are officially a graduate!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE 4 — THINGS I'M PROUD OF YOU FOR -->
+        <section id="proud-of" class="section">
+            <div class="section-container">
+                <div class="center-header animate-on-scroll">
+                    <span class="sub-tag">Admiration</span>
+                    <h2 class="section-title">Things I'm Proud of You For</h2>
+                </div>
+
+                <div class="cards-grid">
+                    <div class="glass-card proud-card animate-on-scroll">
+                        <div class="card-icon">💪</div>
+                        <h3>Your Hard Work</h3>
+                        <p>Your relentless dedication and effort in every late-night study session.</p>
+                    </div>
+
+                    <div class="glass-card proud-card animate-on-scroll">
+                        <div class="card-icon">🌸</div>
+                        <h3>Your Patience</h3>
+                        <p>How calmly you handled high-pressure moments and tough assignments.</p>
+                    </div>
+
+                    <div class="glass-card proud-card animate-on-scroll">
+                        <div class="card-icon">👑</div>
+                        <h3>Your Strength</h3>
+                        <p>Rising above every challenge and setback with unmatched grace.</p>
+                    </div>
+
+                    <div class="glass-card proud-card animate-on-scroll">
+                        <div class="card-icon">🔥</div>
+                        <h3>Never Giving Up</h3>
+                        <p>Even when things got overwhelming, you pushed through every hurdle.</p>
+                    </div>
+
+                    <div class="glass-card proud-card animate-on-scroll">
+                        <div class="card-icon">✨</div>
+                        <h3>Believing in Yourself</h3>
+                        <p>Trusting your abilities and trusting the process until the very end.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE 5 — MORE THAN JUST A GRADUATE -->
+        <section id="more-than" class="section bg-soft">
+            <div class="section-container">
+                <div class="center-header animate-on-scroll">
+                    <span class="sub-tag">Best Friend's Reflection</span>
+                    <h2 class="section-title">More Than Just a Graduate...</h2>
+                </div>
+
+                <div class="glass-card emotional-card animate-on-scroll">
+                    <div class="quote-mark">“</div>
+                    <p class="emotional-text">
+                        I'm not only proud because you graduated. I'm proud because I got to watch you grow through this journey. I saw the effort behind the achievement, the struggles behind the smiles and the determination behind every step. Seeing you reach this moment makes me genuinely happy.
+                    </p>
+
+                    <div class="divider-line"></div>
+
+                    <p class="personal-text editable-var" data-var="FRIENDSHIP_MESSAGE">
+                        [WRITE YOUR PERSONAL MESSAGE HERE: You've always been an inspiration to everyone around you. Thank you for being such an incredible friend through thick and thin!]
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE 6 — OUR FRIENDSHIP IN WORDS -->
+        <section id="friendship-words" class="section">
+            <div class="section-container">
+                <div class="center-header animate-on-scroll">
+                    <span class="sub-tag">Shared Memories</span>
+                    <h2 class="section-title">Our Friendship in Words</h2>
+                </div>
+
+                <div class="cards-grid">
+                    <div class="glass-card memory-card animate-on-scroll">
+                        <div class="memory-tag">Secret Code</div>
+                        <h3>Things Only We Understand</h3>
+                        <p class="editable-var" data-var="MEM_UNDERSTAND">[EDITABLE TEXT: All our silent looks, random code words, and unspoken signals during lectures.]</p>
+                    </div>
+
+                    <div class="glass-card memory-card animate-on-scroll">
+                        <div class="memory-tag">Laughter</div>
+                        <h3>Our Funniest Moments</h3>
+                        <p class="editable-var" data-var="MEM_FUNNIEST">[EDITABLE TEXT: Laughing so hard until our stomachs hurt during late night study sessions.]</p>
+                    </div>
+
+                    <div class="glass-card memory-card animate-on-scroll">
+                        <div class="memory-tag">Classic</div>
+                        <h3>Inside Jokes</h3>
+                        <p class="editable-var" data-var="MEM_JOKES">[EDITABLE TEXT: That one hilarious incident that we still can't bring up without cracking up.]</p>
+                    </div>
+
+                    <div class="glass-card memory-card animate-on-scroll">
+                        <div class="memory-tag">Core Memory</div>
+                        <h3>Things I'll Always Remember</h3>
+                        <p class="editable-var" data-var="MEM_REMEMBER">[EDITABLE TEXT: How we supported each other through every exam stress and celebrated every tiny victory.]</p>
+                    </div>
+
+                    <div class="glass-card memory-card animate-on-scroll span-full">
+                        <div class="memory-tag">Forever</div>
+                        <h3>You'll Always Be My Person</h3>
+                        <p class="editable-var" data-var="MEM_PERSON">[EDITABLE TEXT: No matter how far life takes us or how busy we get, you will always be my go-to best friend.]</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE 7 — YOUR NEXT CHAPTER -->
+        <section id="next-chapter" class="section bg-soft">
+            <div class="section-container">
+                <div class="center-header animate-on-scroll">
+                    <span class="sub-tag">The Future</span>
+                    <h2 class="section-title">Here's to Your Next Chapter</h2>
+                </div>
+
+                <div class="wishes-container">
+                    <div class="wish-item glass-card animate-on-scroll">
+                        <span class="wish-icon">🌟</span>
+                        <p>May you achieve everything you've been working for.</p>
+                    </div>
+
+                    <div class="wish-item glass-card animate-on-scroll">
+                        <span class="wish-icon">🚪</span>
+                        <p>May every new door lead you somewhere amazing.</p>
+                    </div>
+
+                    <div class="wish-item glass-card animate-on-scroll">
+                        <span class="wish-icon">☀️</span>
+                        <p>May your future be even brighter than you imagined.</p>
+                    </div>
+
+                    <div class="wish-item glass-card animate-on-scroll">
+                        <span class="wish-icon">💖</span>
+                        <p>May you always believe in yourself.</p>
+                    </div>
+
+                    <div class="wish-item glass-card animate-on-scroll">
+                        <span class="wish-icon">🥂</span>
+                        <p>And may we always celebrate each other's victories.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE 8 — THE SURPRISE LETTER -->
+        <section id="letter" class="section">
+            <div class="section-container">
+                <div class="center-header animate-on-scroll">
+                    <span class="sub-tag">Personal Note</span>
+                    <h2 class="section-title">The Surprise Letter</h2>
+                    <p class="section-subtext">You have one final message...</p>
+                </div>
+
+                <div class="envelope-wrapper animate-on-scroll">
+                    <div class="envelope" id="envelope">
+                        <div class="envelope-back"></div>
+                        <div class="letter-preview" id="letterPreview">
+                            <div class="letter-paper">
+                                <div class="letter-header">
+                                    <span class="letter-date editable-var" data-var="GRADUATION_DATE">[GRADUATION DATE]</span>
+                                </div>
+                                <div class="letter-body">
+                                    <p>Dear <span class="editable-var" data-var="FRIEND_NAME">[FRIEND NAME]</span>,</p>
+                                    <div class="editable-var" data-var="LETTER_MESSAGE">
+                                        [LETTER CONTENT PLACEHOLDER]
+                                    </div>
+                                    <p class="letter-closing">
+                                        Always proud of you,<br>
+                                        <strong class="editable-var" data-var="YOUR_NAME">[YOUR NAME]</strong>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="envelope-flap" id="envelopeFlap"></div>
+                        <div class="envelope-front"></div>
+                        <div class="envelope-seal" id="envelopeSeal">🎓</div>
+                    </div>
+
+                    <div class="envelope-actions">
+                        <button class="btn btn-primary btn-glow" id="openLetterBtn">Open My Letter 💌</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE 9 — FINAL CELEBRATION -->
+        <section id="final-celebration" class="section celebration-bg">
+            <div class="section-container">
+                <div class="final-content animate-on-scroll">
+                    <div class="cap-bounce">🎓</div>
+                    <h2 class="final-heading">CONGRATULATIONS, <span class="editable-var" data-var="FRIEND_NAME">[FRIEND NAME]</span>! 🎉</h2>
+                    <p class="final-subheading">Your next chapter starts now.</p>
+
+                    <div class="final-quote-card glass-card">
+                        <p>"Today you earned a degree, but more importantly, you proved to yourself that you could make it through."</p>
+                    </div>
+
+                    <div class="final-footer">
+                        <p>Made with love and lots of pride by your best friend, <strong class="editable-var" data-var="YOUR_NAME">[YOUR NAME]</strong> ❤️</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top-btn" id="scrollTopBtn" aria-label="Scroll to Top">↑</button>
+
+    <script src="script.js"></script>
+</body>
+</html>
